@@ -1,0 +1,31 @@
+syntax = "proto3";
+message CardInfo {
+  string card_id = 1;
+  // Mapping between i18n code and the actual text
+  map<string, string> card_name = 2;
+  map<string, string> card_text_inhand = 3;
+  map<string, string> flavor_text = 4;
+  int32 health = 5;
+  int32 attack = 6;
+  int32 cost = 7;
+  int32 card_set = 8;
+  int32 class = 9;
+  int32 card_type = 10;
+  int32 rarity = 11;
+  int32 collectible = 12;
+  int32 hero_power_damage = 13;
+  int32 card_race = 14;
+
+  // Card specific
+  bool charge = 15;
+  bool inspire = 16;
+  bool battlecry = 17;
+  bool deathrattle = 18;
+  bool divine_shield = 19;
+  bool stealth = 20;
+  bool choose_one = 21;
+  bool discover = 22;
+  bool aura = 23;
+  bool elite = 24;
+  bool taunt = 25;
+}
