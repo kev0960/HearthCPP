@@ -9,7 +9,7 @@ message CardInfo {
   int32 attack = 6;
   int32 cost = 7;
   int32 card_set = 8;
-  int32 class = 9;
+  int32 class_name = 9;
   int32 card_type = 10;
   int32 rarity = 11;
   int32 collectible = 12;

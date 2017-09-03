@@ -167,11 +167,11 @@ class CardInfo : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::google::protobuf::int32 card_set() const;
   void set_card_set(::google::protobuf::int32 value);
 
-  // optional int32 class = 9;
-  void clear_class_();
-  static const int kClassFieldNumber = 9;
-  ::google::protobuf::int32 class_() const;
-  void set_class_(::google::protobuf::int32 value);
+  // optional int32 class_name = 9;
+  void clear_class_name();
+  static const int kClassNameFieldNumber = 9;
+  ::google::protobuf::int32 class_name() const;
+  void set_class_name(::google::protobuf::int32 value);
 
   // optional int32 card_type = 10;
   void clear_card_type();
@@ -311,7 +311,7 @@ class CardInfo : public ::google::protobuf::Message /* @@protoc_insertion_point(
   ::google::protobuf::int32 attack_;
   ::google::protobuf::int32 cost_;
   ::google::protobuf::int32 card_set_;
-  ::google::protobuf::int32 class__;
+  ::google::protobuf::int32 class_name_;
   ::google::protobuf::int32 card_type_;
   ::google::protobuf::int32 rarity_;
   ::google::protobuf::int32 collectible_;
@@ -500,18 +500,18 @@ inline void CardInfo::set_card_set(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:CardInfo.card_set)
 }
 
-// optional int32 class = 9;
-inline void CardInfo::clear_class_() {
-  class__ = 0;
+// optional int32 class_name = 9;
+inline void CardInfo::clear_class_name() {
+  class_name_ = 0;
 }
-inline ::google::protobuf::int32 CardInfo::class_() const {
-  // @@protoc_insertion_point(field_get:CardInfo.class)
-  return class__;
+inline ::google::protobuf::int32 CardInfo::class_name() const {
+  // @@protoc_insertion_point(field_get:CardInfo.class_name)
+  return class_name_;
 }
-inline void CardInfo::set_class_(::google::protobuf::int32 value) {
+inline void CardInfo::set_class_name(::google::protobuf::int32 value) {
   
-  class__ = value;
-  // @@protoc_insertion_point(field_set:CardInfo.class)
+  class_name_ = value;
+  // @@protoc_insertion_point(field_set:CardInfo.class_name)
 }
 
 // optional int32 card_type = 10;

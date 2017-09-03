@@ -46,7 +46,7 @@ void protobuf_AssignDesc_card_5finfo_2eproto() {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardInfo, attack_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardInfo, cost_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardInfo, card_set_),
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardInfo, class__),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardInfo, class_name_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardInfo, card_type_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardInfo, rarity_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(CardInfo, collectible_),
@@ -146,25 +146,25 @@ void protobuf_AddDesc_card_5finfo_2eproto_impl() {
 
   protobuf_InitDefaults_card_5finfo_2eproto();
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\017card_info.proto\"\303\005\n\010CardInfo\022\017\n\007card_i"
+    "\n\017card_info.proto\"\310\005\n\010CardInfo\022\017\n\007card_i"
     "d\030\001 \001(\t\022*\n\tcard_name\030\002 \003(\0132\027.CardInfo.Ca"
     "rdNameEntry\0227\n\020card_text_inhand\030\003 \003(\0132\035."
     "CardInfo.CardTextInhandEntry\022.\n\013flavor_t"
     "ext\030\004 \003(\0132\031.CardInfo.FlavorTextEntry\022\016\n\006"
     "health\030\005 \001(\005\022\016\n\006attack\030\006 \001(\005\022\014\n\004cost\030\007 \001"
-    "(\005\022\020\n\010card_set\030\010 \001(\005\022\r\n\005class\030\t \001(\005\022\021\n\tc"
-    "ard_type\030\n \001(\005\022\016\n\006rarity\030\013 \001(\005\022\023\n\013collec"
-    "tible\030\014 \001(\005\022\031\n\021hero_power_damage\030\r \001(\005\022\021"
-    "\n\tcard_race\030\016 \001(\005\022\016\n\006charge\030\017 \001(\010\022\017\n\007ins"
-    "pire\030\020 \001(\010\022\021\n\tbattlecry\030\021 \001(\010\022\023\n\013deathra"
-    "ttle\030\022 \001(\010\022\025\n\rdivine_shield\030\023 \001(\010\022\017\n\007ste"
-    "alth\030\024 \001(\010\022\022\n\nchoose_one\030\025 \001(\010\022\020\n\010discov"
-    "er\030\026 \001(\010\022\014\n\004aura\030\027 \001(\010\022\r\n\005elite\030\030 \001(\010\022\r\n"
-    "\005taunt\030\031 \001(\010\032/\n\rCardNameEntry\022\013\n\003key\030\001 \001"
-    "(\t\022\r\n\005value\030\002 \001(\t:\0028\001\0325\n\023CardTextInhandE"
-    "ntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\0321\n\017"
-    "FlavorTextEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 "
-    "\001(\t:\0028\001b\006proto3", 735);
+    "(\005\022\020\n\010card_set\030\010 \001(\005\022\022\n\nclass_name\030\t \001(\005"
+    "\022\021\n\tcard_type\030\n \001(\005\022\016\n\006rarity\030\013 \001(\005\022\023\n\013c"
+    "ollectible\030\014 \001(\005\022\031\n\021hero_power_damage\030\r "
+    "\001(\005\022\021\n\tcard_race\030\016 \001(\005\022\016\n\006charge\030\017 \001(\010\022\017"
+    "\n\007inspire\030\020 \001(\010\022\021\n\tbattlecry\030\021 \001(\010\022\023\n\013de"
+    "athrattle\030\022 \001(\010\022\025\n\rdivine_shield\030\023 \001(\010\022\017"
+    "\n\007stealth\030\024 \001(\010\022\022\n\nchoose_one\030\025 \001(\010\022\020\n\010d"
+    "iscover\030\026 \001(\010\022\014\n\004aura\030\027 \001(\010\022\r\n\005elite\030\030 \001"
+    "(\010\022\r\n\005taunt\030\031 \001(\010\032/\n\rCardNameEntry\022\013\n\003ke"
+    "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001\0325\n\023CardTextIn"
+    "handEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028"
+    "\001\0321\n\017FlavorTextEntry\022\013\n\003key\030\001 \001(\t\022\r\n\005val"
+    "ue\030\002 \001(\t:\0028\001b\006proto3", 740);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "card_info.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&protobuf_ShutdownFile_card_5finfo_2eproto);
@@ -203,7 +203,7 @@ const int CardInfo::kHealthFieldNumber;
 const int CardInfo::kAttackFieldNumber;
 const int CardInfo::kCostFieldNumber;
 const int CardInfo::kCardSetFieldNumber;
-const int CardInfo::kClassFieldNumber;
+const int CardInfo::kClassNameFieldNumber;
 const int CardInfo::kCardTypeFieldNumber;
 const int CardInfo::kRarityFieldNumber;
 const int CardInfo::kCollectibleFieldNumber;
@@ -313,7 +313,7 @@ void CardInfo::Clear() {
 
   ZR_(health_, card_set_);
   card_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ZR_(class__, inspire_);
+  ZR_(class_name_, inspire_);
   ZR_(battlecry_, elite_);
   taunt_ = false;
 
@@ -498,18 +498,18 @@ bool CardInfo::MergePartialFromCodedStream(
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(72)) goto parse_class;
+        if (input->ExpectTag(72)) goto parse_class_name;
         break;
       }
 
-      // optional int32 class = 9;
+      // optional int32 class_name = 9;
       case 9: {
         if (tag == 72) {
-         parse_class:
+         parse_class_name:
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &class__)));
+                 input, &class_name_)));
         } else {
           goto handle_unusual;
         }
@@ -970,9 +970,9 @@ void CardInfo::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->card_set(), output);
   }
 
-  // optional int32 class = 9;
-  if (this->class_() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->class_(), output);
+  // optional int32 class_name = 9;
+  if (this->class_name() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->class_name(), output);
   }
 
   // optional int32 card_type = 10;
@@ -1264,9 +1264,9 @@ void CardInfo::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->card_set(), target);
   }
 
-  // optional int32 class = 9;
-  if (this->class_() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->class_(), target);
+  // optional int32 class_name = 9;
+  if (this->class_name() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->class_name(), target);
   }
 
   // optional int32 card_type = 10;
@@ -1392,11 +1392,11 @@ size_t CardInfo::ByteSizeLong() const {
         this->card_set());
   }
 
-  // optional int32 class = 9;
-  if (this->class_() != 0) {
+  // optional int32 class_name = 9;
+  if (this->class_name() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->class_());
+        this->class_name());
   }
 
   // optional int32 card_type = 10;
@@ -1583,8 +1583,8 @@ void CardInfo::UnsafeMergeFrom(const CardInfo& from) {
   if (from.card_set() != 0) {
     set_card_set(from.card_set());
   }
-  if (from.class_() != 0) {
-    set_class_(from.class_());
+  if (from.class_name() != 0) {
+    set_class_name(from.class_name());
   }
   if (from.card_type() != 0) {
     set_card_type(from.card_type());
@@ -1668,7 +1668,7 @@ void CardInfo::InternalSwap(CardInfo* other) {
   std::swap(attack_, other->attack_);
   std::swap(cost_, other->cost_);
   std::swap(card_set_, other->card_set_);
-  std::swap(class__, other->class__);
+  std::swap(class_name_, other->class_name_);
   std::swap(card_type_, other->card_type_);
   std::swap(rarity_, other->rarity_);
   std::swap(collectible_, other->collectible_);
@@ -1854,18 +1854,18 @@ void CardInfo::set_card_set(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:CardInfo.card_set)
 }
 
-// optional int32 class = 9;
-void CardInfo::clear_class_() {
-  class__ = 0;
+// optional int32 class_name = 9;
+void CardInfo::clear_class_name() {
+  class_name_ = 0;
 }
-::google::protobuf::int32 CardInfo::class_() const {
-  // @@protoc_insertion_point(field_get:CardInfo.class)
-  return class__;
+::google::protobuf::int32 CardInfo::class_name() const {
+  // @@protoc_insertion_point(field_get:CardInfo.class_name)
+  return class_name_;
 }
-void CardInfo::set_class_(::google::protobuf::int32 value) {
+void CardInfo::set_class_name(::google::protobuf::int32 value) {
   
-  class__ = value;
-  // @@protoc_insertion_point(field_set:CardInfo.class)
+  class_name_ = value;
+  // @@protoc_insertion_point(field_set:CardInfo.class_name)
 }
 
 // optional int32 card_type = 10;
