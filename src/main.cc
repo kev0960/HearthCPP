@@ -17,11 +17,18 @@ class Card {
   virtual int owner() const = 0;
 };
 
+class Game {
+  
+};
+
+class Event {
+
+};
 
 class Field {
   vector<Card *> cards;
 };
 int main() {
   HSCardDB db ("CardDefs.xml");
-  db.Search(SearchHSCard(SearchHSCard::ALL).Exact("cost", set<int>{3}));
+  db.Search(SearchHSCard(SearchHSCard::ANY).Greater("cost", 8).Greater("health", 8).Greater("attack", 8));
 }
