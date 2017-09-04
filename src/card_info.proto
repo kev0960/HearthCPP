@@ -15,6 +15,7 @@ message CardInfo {
   int32 collectible = 12;
   int32 hero_power_damage = 13;
   int32 card_race = 14;
+  int32 durability = 26;
 
   // Card specific
   bool charge = 15;
@@ -28,4 +29,25 @@ message CardInfo {
   bool aura = 23;
   bool elite = 24;
   bool taunt = 25;
+  bool poison = 27;
+  bool adapt = 28;
+  bool cant_targeted_by_spell = 29;
+  bool cant_targeted_by_hero_power = 30;
+  bool affected_by_spell_power = 31;
+  bool freeze = 32;
+  bool silence = 33;
+  bool windfury = 34;
+  bool combo = 35;
+  bool secret = 36;
+  bool overload = 37;
+  bool overload_owed = 38;
+  bool immune = 39;
+  bool cant_attack = 40;
+  bool enraged = 41;
+  bool quest = 42;
+  bool spellpower = 43;
+  bool double_spell_dmg = 44;
+  bool armor = 45;
+
+  // next id : 46
 }
