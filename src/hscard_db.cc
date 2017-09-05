@@ -144,6 +144,12 @@ HSCardDB::HSCardDB(const string &file_name) {
   }
 }
 
+HSCardDB &HSCardDB::GetHSCardDB() {
+  // Name of the XML file must be CardDefs.xml
+  static HSCardDB hscard_db("CardDefs.xml");
+  return hscard_db;
+}
+
 CardInfo HSCardDB::ParseCardElement(tinyxml2::XMLElement *element) {
   CardInfo card_info;
   card_info.set_card_id(element->Attribute("CardID"));
@@ -170,30 +176,45 @@ CardInfo HSCardDB::ParseCardElement(tinyxml2::XMLElement *element) {
 }
 
 vector<CardInfo> HSCardDB::Search(const vector<string> &card_id,
-                                  const SearchHSCard &criteria) {
+                                  const SearchHSCard &criteria) const {
   map<string, CardInfo> found;
   for (auto itr = card_id.begin(); itr != card_id.end(); itr++) {
     if (card_info_map_.find(*itr) != card_info_map_.end()) {
-      found[*itr] = card_info_map_[*itr];
+      found[*itr] = card_info_map_.at(*itr);
     }
   }
   return Search(found, criteria);
 }
-vector<CardInfo> HSCardDB::Search(const SearchHSCard &criteria) {
+vector<CardInfo> HSCardDB::Search(const SearchHSCard &criteria) const {
   return Search(card_info_map_, criteria);
 }
 
 vector<CardInfo> HSCardDB::Search(const map<string, CardInfo> &map,
-                                  const SearchHSCard &criteria) {
+                                  const SearchHSCard &criteria) const {
   vector<CardInfo> found;
   for (auto itr = map.begin(); itr != map.end(); itr++) {
     if (criteria.meet(itr->second)) found.push_back(itr->second);
   }
-  for (auto itr = found.begin(); itr != found.end(); itr ++) {
+  for (auto itr = found.begin(); itr != found.end(); itr++) {
     cout << "Found :: " << SafeLookupMap(itr->card_name(), "koKR") << endl;
   }
   // cout << SafeLookupMap(card_info.card_name(), "koKR") << endl;
   return found;
+}
+
+CardInfo HSCardDB::Search(const string &card_id) const {
+  auto itr = card_info_map_.find(card_id);
+  if (itr != card_info_map_.end()) {
+    return itr->second;
+  }
+  return CardInfo();
+}
+
+SearchHSCard &SearchHSCard::HasField(string field_name) {
+  criterias_.push_back(make_pair(
+      field_name, [](int card_val) -> bool { return card_val == 1; }));
+
+  return *this;
 }
 
 SearchHSCard &SearchHSCard::Exact(string field_name, const set<int> &matches) {

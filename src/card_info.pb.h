@@ -21,13 +21,13 @@
 
 #include <google/protobuf/arena.h>
 #include <google/protobuf/arenastring.h>
-#include <google/protobuf/extension_set.h>
 #include <google/protobuf/generated_message_util.h>
+#include <google/protobuf/metadata.h>
+#include <google/protobuf/message.h>
+#include <google/protobuf/repeated_field.h>
+#include <google/protobuf/extension_set.h>
 #include <google/protobuf/map.h>
 #include <google/protobuf/map_field_inl.h>
-#include <google/protobuf/message.h>
-#include <google/protobuf/metadata.h>
-#include <google/protobuf/repeated_field.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
@@ -41,9 +41,7 @@ class CardInfo;
 
 // ===================================================================
 
-class CardInfo
-    : public ::google::protobuf::
-          Message /* @@protoc_insertion_point(class_definition:CardInfo) */ {
+class CardInfo : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CardInfo) */ {
  public:
   CardInfo();
   virtual ~CardInfo();
@@ -81,31 +79,29 @@ class CardInfo
       ::google::protobuf::io::CodedOutputStream* output) const;
   ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
       bool deterministic, ::google::protobuf::uint8* output) const;
-  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(
-      ::google::protobuf::uint8* output) const {
+  ::google::protobuf::uint8* SerializeWithCachedSizesToArray(::google::protobuf::uint8* output) const {
     return InternalSerializeWithCachedSizesToArray(false, output);
   }
   int GetCachedSize() const { return _cached_size_; }
-
- private:
+  private:
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const;
   void InternalSwap(CardInfo* other);
   void UnsafeMergeFrom(const CardInfo& from);
-
- private:
+  private:
   inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
     return _internal_metadata_.arena();
   }
   inline void* MaybeArenaPtr() const {
     return _internal_metadata_.raw_arena_ptr();
   }
+  public:
 
- public:
   ::google::protobuf::Metadata GetMetadata() const;
 
   // nested types ----------------------------------------------------
+
 
   // accessors -------------------------------------------------------
 
@@ -124,26 +120,28 @@ class CardInfo
   int card_name_size() const;
   void clear_card_name();
   static const int kCardNameFieldNumber = 2;
-  const ::google::protobuf::Map< ::std::string, ::std::string>& card_name()
-      const;
-  ::google::protobuf::Map< ::std::string, ::std::string>* mutable_card_name();
+  const ::google::protobuf::Map< ::std::string, ::std::string >&
+      card_name() const;
+  ::google::protobuf::Map< ::std::string, ::std::string >*
+      mutable_card_name();
 
   // map<string, string> card_text_inhand = 3;
   int card_text_inhand_size() const;
   void clear_card_text_inhand();
   static const int kCardTextInhandFieldNumber = 3;
-  const ::google::protobuf::Map< ::std::string, ::std::string>&
-  card_text_inhand() const;
-  ::google::protobuf::Map< ::std::string, ::std::string>*
-  mutable_card_text_inhand();
+  const ::google::protobuf::Map< ::std::string, ::std::string >&
+      card_text_inhand() const;
+  ::google::protobuf::Map< ::std::string, ::std::string >*
+      mutable_card_text_inhand();
 
   // map<string, string> flavor_text = 4;
   int flavor_text_size() const;
   void clear_flavor_text();
   static const int kFlavorTextFieldNumber = 4;
-  const ::google::protobuf::Map< ::std::string, ::std::string>& flavor_text()
-      const;
-  ::google::protobuf::Map< ::std::string, ::std::string>* mutable_flavor_text();
+  const ::google::protobuf::Map< ::std::string, ::std::string >&
+      flavor_text() const;
+  ::google::protobuf::Map< ::std::string, ::std::string >*
+      mutable_flavor_text();
 
   // optional int32 health = 5;
   void clear_health();
@@ -393,37 +391,41 @@ class CardInfo
 
   // @@protoc_insertion_point(class_scope:CardInfo)
  private:
+
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   typedef ::google::protobuf::internal::MapEntryLite<
       ::std::string, ::std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING, 0>
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 >
       CardInfo_CardNameEntry;
   ::google::protobuf::internal::MapField<
       ::std::string, ::std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING, 0>
-      card_name_;
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 > card_name_;
   typedef ::google::protobuf::internal::MapEntryLite<
       ::std::string, ::std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING, 0>
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 >
       CardInfo_CardTextInhandEntry;
   ::google::protobuf::internal::MapField<
       ::std::string, ::std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING, 0>
-      card_text_inhand_;
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 > card_text_inhand_;
   typedef ::google::protobuf::internal::MapEntryLite<
       ::std::string, ::std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING, 0>
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 >
       CardInfo_FlavorTextEntry;
   ::google::protobuf::internal::MapField<
       ::std::string, ::std::string,
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
-      ::google::protobuf::internal::WireFormatLite::TYPE_STRING, 0>
-      flavor_text_;
+      ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
+      0 > flavor_text_;
   ::google::protobuf::internal::ArenaStringPtr card_id_;
   ::google::protobuf::int32 health_;
   ::google::protobuf::int32 attack_;
@@ -467,17 +469,17 @@ class CardInfo
   bool double_spell_dmg_;
   bool armor_;
   mutable int _cached_size_;
-  friend void protobuf_InitDefaults_card_5finfo_2eproto_impl();
-  friend void protobuf_AddDesc_card_5finfo_2eproto_impl();
+  friend void  protobuf_InitDefaults_card_5finfo_2eproto_impl();
+  friend void  protobuf_AddDesc_card_5finfo_2eproto_impl();
   friend void protobuf_AssignDesc_card_5finfo_2eproto();
   friend void protobuf_ShutdownFile_card_5finfo_2eproto();
 
   void InitAsDefaultInstance();
 };
-extern ::google::protobuf::internal::ExplicitlyConstructed<CardInfo>
-    CardInfo_default_instance_;
+extern ::google::protobuf::internal::ExplicitlyConstructed<CardInfo> CardInfo_default_instance_;
 
 // ===================================================================
+
 
 // ===================================================================
 
@@ -486,60 +488,61 @@ extern ::google::protobuf::internal::ExplicitlyConstructed<CardInfo>
 
 // optional string card_id = 1;
 inline void CardInfo::clear_card_id() {
-  card_id_.ClearToEmptyNoArena(
-      &::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  card_id_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline const ::std::string& CardInfo::card_id() const {
   // @@protoc_insertion_point(field_get:CardInfo.card_id)
-  return card_id_.GetNoArena(
-      &::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return card_id_.GetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void CardInfo::set_card_id(const ::std::string& value) {
-  card_id_.SetNoArena(
-      &::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  
+  card_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
   // @@protoc_insertion_point(field_set:CardInfo.card_id)
 }
 inline void CardInfo::set_card_id(const char* value) {
-  card_id_.SetNoArena(
-      &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(value));
+  
+  card_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
   // @@protoc_insertion_point(field_set_char:CardInfo.card_id)
 }
 inline void CardInfo::set_card_id(const char* value, size_t size) {
-  card_id_.SetNoArena(
-      &::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+  
+  card_id_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
   // @@protoc_insertion_point(field_set_pointer:CardInfo.card_id)
 }
 inline ::std::string* CardInfo::mutable_card_id() {
+  
   // @@protoc_insertion_point(field_mutable:CardInfo.card_id)
-  return card_id_.MutableNoArena(
-      &::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  return card_id_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline ::std::string* CardInfo::release_card_id() {
   // @@protoc_insertion_point(field_release:CardInfo.card_id)
-
-  return card_id_.ReleaseNoArena(
-      &::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  
+  return card_id_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 inline void CardInfo::set_allocated_card_id(::std::string* card_id) {
   if (card_id != NULL) {
+    
   } else {
+    
   }
-  card_id_.SetAllocatedNoArena(
-      &::google::protobuf::internal::GetEmptyStringAlreadyInited(), card_id);
+  card_id_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), card_id);
   // @@protoc_insertion_point(field_set_allocated:CardInfo.card_id)
 }
 
 // map<string, string> card_name = 2;
-inline int CardInfo::card_name_size() const { return card_name_.size(); }
-inline void CardInfo::clear_card_name() { card_name_.Clear(); }
-inline const ::google::protobuf::Map< ::std::string, ::std::string>&
+inline int CardInfo::card_name_size() const {
+  return card_name_.size();
+}
+inline void CardInfo::clear_card_name() {
+  card_name_.Clear();
+}
+inline const ::google::protobuf::Map< ::std::string, ::std::string >&
 CardInfo::card_name() const {
   // @@protoc_insertion_point(field_map:CardInfo.card_name)
   return card_name_.GetMap();
 }
-inline ::google::protobuf::Map< ::std::string, ::std::string>*
+inline ::google::protobuf::Map< ::std::string, ::std::string >*
 CardInfo::mutable_card_name() {
   // @@protoc_insertion_point(field_mutable_map:CardInfo.card_name)
   return card_name_.MutableMap();
@@ -549,292 +552,370 @@ CardInfo::mutable_card_name() {
 inline int CardInfo::card_text_inhand_size() const {
   return card_text_inhand_.size();
 }
-inline void CardInfo::clear_card_text_inhand() { card_text_inhand_.Clear(); }
-inline const ::google::protobuf::Map< ::std::string, ::std::string>&
+inline void CardInfo::clear_card_text_inhand() {
+  card_text_inhand_.Clear();
+}
+inline const ::google::protobuf::Map< ::std::string, ::std::string >&
 CardInfo::card_text_inhand() const {
   // @@protoc_insertion_point(field_map:CardInfo.card_text_inhand)
   return card_text_inhand_.GetMap();
 }
-inline ::google::protobuf::Map< ::std::string, ::std::string>*
+inline ::google::protobuf::Map< ::std::string, ::std::string >*
 CardInfo::mutable_card_text_inhand() {
   // @@protoc_insertion_point(field_mutable_map:CardInfo.card_text_inhand)
   return card_text_inhand_.MutableMap();
 }
 
 // map<string, string> flavor_text = 4;
-inline int CardInfo::flavor_text_size() const { return flavor_text_.size(); }
-inline void CardInfo::clear_flavor_text() { flavor_text_.Clear(); }
-inline const ::google::protobuf::Map< ::std::string, ::std::string>&
+inline int CardInfo::flavor_text_size() const {
+  return flavor_text_.size();
+}
+inline void CardInfo::clear_flavor_text() {
+  flavor_text_.Clear();
+}
+inline const ::google::protobuf::Map< ::std::string, ::std::string >&
 CardInfo::flavor_text() const {
   // @@protoc_insertion_point(field_map:CardInfo.flavor_text)
   return flavor_text_.GetMap();
 }
-inline ::google::protobuf::Map< ::std::string, ::std::string>*
+inline ::google::protobuf::Map< ::std::string, ::std::string >*
 CardInfo::mutable_flavor_text() {
   // @@protoc_insertion_point(field_mutable_map:CardInfo.flavor_text)
   return flavor_text_.MutableMap();
 }
 
 // optional int32 health = 5;
-inline void CardInfo::clear_health() { health_ = 0; }
+inline void CardInfo::clear_health() {
+  health_ = 0;
+}
 inline ::google::protobuf::int32 CardInfo::health() const {
   // @@protoc_insertion_point(field_get:CardInfo.health)
   return health_;
 }
 inline void CardInfo::set_health(::google::protobuf::int32 value) {
+  
   health_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.health)
 }
 
 // optional int32 attack = 6;
-inline void CardInfo::clear_attack() { attack_ = 0; }
+inline void CardInfo::clear_attack() {
+  attack_ = 0;
+}
 inline ::google::protobuf::int32 CardInfo::attack() const {
   // @@protoc_insertion_point(field_get:CardInfo.attack)
   return attack_;
 }
 inline void CardInfo::set_attack(::google::protobuf::int32 value) {
+  
   attack_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.attack)
 }
 
 // optional int32 cost = 7;
-inline void CardInfo::clear_cost() { cost_ = 0; }
+inline void CardInfo::clear_cost() {
+  cost_ = 0;
+}
 inline ::google::protobuf::int32 CardInfo::cost() const {
   // @@protoc_insertion_point(field_get:CardInfo.cost)
   return cost_;
 }
 inline void CardInfo::set_cost(::google::protobuf::int32 value) {
+  
   cost_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.cost)
 }
 
 // optional int32 card_set = 8;
-inline void CardInfo::clear_card_set() { card_set_ = 0; }
+inline void CardInfo::clear_card_set() {
+  card_set_ = 0;
+}
 inline ::google::protobuf::int32 CardInfo::card_set() const {
   // @@protoc_insertion_point(field_get:CardInfo.card_set)
   return card_set_;
 }
 inline void CardInfo::set_card_set(::google::protobuf::int32 value) {
+  
   card_set_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.card_set)
 }
 
 // optional int32 class_name = 9;
-inline void CardInfo::clear_class_name() { class_name_ = 0; }
+inline void CardInfo::clear_class_name() {
+  class_name_ = 0;
+}
 inline ::google::protobuf::int32 CardInfo::class_name() const {
   // @@protoc_insertion_point(field_get:CardInfo.class_name)
   return class_name_;
 }
 inline void CardInfo::set_class_name(::google::protobuf::int32 value) {
+  
   class_name_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.class_name)
 }
 
 // optional int32 card_type = 10;
-inline void CardInfo::clear_card_type() { card_type_ = 0; }
+inline void CardInfo::clear_card_type() {
+  card_type_ = 0;
+}
 inline ::google::protobuf::int32 CardInfo::card_type() const {
   // @@protoc_insertion_point(field_get:CardInfo.card_type)
   return card_type_;
 }
 inline void CardInfo::set_card_type(::google::protobuf::int32 value) {
+  
   card_type_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.card_type)
 }
 
 // optional int32 rarity = 11;
-inline void CardInfo::clear_rarity() { rarity_ = 0; }
+inline void CardInfo::clear_rarity() {
+  rarity_ = 0;
+}
 inline ::google::protobuf::int32 CardInfo::rarity() const {
   // @@protoc_insertion_point(field_get:CardInfo.rarity)
   return rarity_;
 }
 inline void CardInfo::set_rarity(::google::protobuf::int32 value) {
+  
   rarity_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.rarity)
 }
 
 // optional int32 collectible = 12;
-inline void CardInfo::clear_collectible() { collectible_ = 0; }
+inline void CardInfo::clear_collectible() {
+  collectible_ = 0;
+}
 inline ::google::protobuf::int32 CardInfo::collectible() const {
   // @@protoc_insertion_point(field_get:CardInfo.collectible)
   return collectible_;
 }
 inline void CardInfo::set_collectible(::google::protobuf::int32 value) {
+  
   collectible_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.collectible)
 }
 
 // optional int32 hero_power_damage = 13;
-inline void CardInfo::clear_hero_power_damage() { hero_power_damage_ = 0; }
+inline void CardInfo::clear_hero_power_damage() {
+  hero_power_damage_ = 0;
+}
 inline ::google::protobuf::int32 CardInfo::hero_power_damage() const {
   // @@protoc_insertion_point(field_get:CardInfo.hero_power_damage)
   return hero_power_damage_;
 }
 inline void CardInfo::set_hero_power_damage(::google::protobuf::int32 value) {
+  
   hero_power_damage_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.hero_power_damage)
 }
 
 // optional int32 card_race = 14;
-inline void CardInfo::clear_card_race() { card_race_ = 0; }
+inline void CardInfo::clear_card_race() {
+  card_race_ = 0;
+}
 inline ::google::protobuf::int32 CardInfo::card_race() const {
   // @@protoc_insertion_point(field_get:CardInfo.card_race)
   return card_race_;
 }
 inline void CardInfo::set_card_race(::google::protobuf::int32 value) {
+  
   card_race_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.card_race)
 }
 
 // optional int32 durability = 26;
-inline void CardInfo::clear_durability() { durability_ = 0; }
+inline void CardInfo::clear_durability() {
+  durability_ = 0;
+}
 inline ::google::protobuf::int32 CardInfo::durability() const {
   // @@protoc_insertion_point(field_get:CardInfo.durability)
   return durability_;
 }
 inline void CardInfo::set_durability(::google::protobuf::int32 value) {
+  
   durability_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.durability)
 }
 
 // optional bool charge = 15;
-inline void CardInfo::clear_charge() { charge_ = false; }
+inline void CardInfo::clear_charge() {
+  charge_ = false;
+}
 inline bool CardInfo::charge() const {
   // @@protoc_insertion_point(field_get:CardInfo.charge)
   return charge_;
 }
 inline void CardInfo::set_charge(bool value) {
+  
   charge_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.charge)
 }
 
 // optional bool inspire = 16;
-inline void CardInfo::clear_inspire() { inspire_ = false; }
+inline void CardInfo::clear_inspire() {
+  inspire_ = false;
+}
 inline bool CardInfo::inspire() const {
   // @@protoc_insertion_point(field_get:CardInfo.inspire)
   return inspire_;
 }
 inline void CardInfo::set_inspire(bool value) {
+  
   inspire_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.inspire)
 }
 
 // optional bool battlecry = 17;
-inline void CardInfo::clear_battlecry() { battlecry_ = false; }
+inline void CardInfo::clear_battlecry() {
+  battlecry_ = false;
+}
 inline bool CardInfo::battlecry() const {
   // @@protoc_insertion_point(field_get:CardInfo.battlecry)
   return battlecry_;
 }
 inline void CardInfo::set_battlecry(bool value) {
+  
   battlecry_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.battlecry)
 }
 
 // optional bool deathrattle = 18;
-inline void CardInfo::clear_deathrattle() { deathrattle_ = false; }
+inline void CardInfo::clear_deathrattle() {
+  deathrattle_ = false;
+}
 inline bool CardInfo::deathrattle() const {
   // @@protoc_insertion_point(field_get:CardInfo.deathrattle)
   return deathrattle_;
 }
 inline void CardInfo::set_deathrattle(bool value) {
+  
   deathrattle_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.deathrattle)
 }
 
 // optional bool divine_shield = 19;
-inline void CardInfo::clear_divine_shield() { divine_shield_ = false; }
+inline void CardInfo::clear_divine_shield() {
+  divine_shield_ = false;
+}
 inline bool CardInfo::divine_shield() const {
   // @@protoc_insertion_point(field_get:CardInfo.divine_shield)
   return divine_shield_;
 }
 inline void CardInfo::set_divine_shield(bool value) {
+  
   divine_shield_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.divine_shield)
 }
 
 // optional bool stealth = 20;
-inline void CardInfo::clear_stealth() { stealth_ = false; }
+inline void CardInfo::clear_stealth() {
+  stealth_ = false;
+}
 inline bool CardInfo::stealth() const {
   // @@protoc_insertion_point(field_get:CardInfo.stealth)
   return stealth_;
 }
 inline void CardInfo::set_stealth(bool value) {
+  
   stealth_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.stealth)
 }
 
 // optional bool choose_one = 21;
-inline void CardInfo::clear_choose_one() { choose_one_ = false; }
+inline void CardInfo::clear_choose_one() {
+  choose_one_ = false;
+}
 inline bool CardInfo::choose_one() const {
   // @@protoc_insertion_point(field_get:CardInfo.choose_one)
   return choose_one_;
 }
 inline void CardInfo::set_choose_one(bool value) {
+  
   choose_one_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.choose_one)
 }
 
 // optional bool discover = 22;
-inline void CardInfo::clear_discover() { discover_ = false; }
+inline void CardInfo::clear_discover() {
+  discover_ = false;
+}
 inline bool CardInfo::discover() const {
   // @@protoc_insertion_point(field_get:CardInfo.discover)
   return discover_;
 }
 inline void CardInfo::set_discover(bool value) {
+  
   discover_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.discover)
 }
 
 // optional bool aura = 23;
-inline void CardInfo::clear_aura() { aura_ = false; }
+inline void CardInfo::clear_aura() {
+  aura_ = false;
+}
 inline bool CardInfo::aura() const {
   // @@protoc_insertion_point(field_get:CardInfo.aura)
   return aura_;
 }
 inline void CardInfo::set_aura(bool value) {
+  
   aura_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.aura)
 }
 
 // optional bool elite = 24;
-inline void CardInfo::clear_elite() { elite_ = false; }
+inline void CardInfo::clear_elite() {
+  elite_ = false;
+}
 inline bool CardInfo::elite() const {
   // @@protoc_insertion_point(field_get:CardInfo.elite)
   return elite_;
 }
 inline void CardInfo::set_elite(bool value) {
+  
   elite_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.elite)
 }
 
 // optional bool taunt = 25;
-inline void CardInfo::clear_taunt() { taunt_ = false; }
+inline void CardInfo::clear_taunt() {
+  taunt_ = false;
+}
 inline bool CardInfo::taunt() const {
   // @@protoc_insertion_point(field_get:CardInfo.taunt)
   return taunt_;
 }
 inline void CardInfo::set_taunt(bool value) {
+  
   taunt_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.taunt)
 }
 
 // optional bool poison = 27;
-inline void CardInfo::clear_poison() { poison_ = false; }
+inline void CardInfo::clear_poison() {
+  poison_ = false;
+}
 inline bool CardInfo::poison() const {
   // @@protoc_insertion_point(field_get:CardInfo.poison)
   return poison_;
 }
 inline void CardInfo::set_poison(bool value) {
+  
   poison_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.poison)
 }
 
 // optional bool adapt = 28;
-inline void CardInfo::clear_adapt() { adapt_ = false; }
+inline void CardInfo::clear_adapt() {
+  adapt_ = false;
+}
 inline bool CardInfo::adapt() const {
   // @@protoc_insertion_point(field_get:CardInfo.adapt)
   return adapt_;
 }
 inline void CardInfo::set_adapt(bool value) {
+  
   adapt_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.adapt)
 }
@@ -848,6 +929,7 @@ inline bool CardInfo::cant_targeted_by_spell() const {
   return cant_targeted_by_spell_;
 }
 inline void CardInfo::set_cant_targeted_by_spell(bool value) {
+  
   cant_targeted_by_spell_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.cant_targeted_by_spell)
 }
@@ -861,6 +943,7 @@ inline bool CardInfo::cant_targeted_by_hero_power() const {
   return cant_targeted_by_hero_power_;
 }
 inline void CardInfo::set_cant_targeted_by_hero_power(bool value) {
+  
   cant_targeted_by_hero_power_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.cant_targeted_by_hero_power)
 }
@@ -874,160 +957,203 @@ inline bool CardInfo::affected_by_spell_power() const {
   return affected_by_spell_power_;
 }
 inline void CardInfo::set_affected_by_spell_power(bool value) {
+  
   affected_by_spell_power_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.affected_by_spell_power)
 }
 
 // optional bool freeze = 32;
-inline void CardInfo::clear_freeze() { freeze_ = false; }
+inline void CardInfo::clear_freeze() {
+  freeze_ = false;
+}
 inline bool CardInfo::freeze() const {
   // @@protoc_insertion_point(field_get:CardInfo.freeze)
   return freeze_;
 }
 inline void CardInfo::set_freeze(bool value) {
+  
   freeze_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.freeze)
 }
 
 // optional bool silence = 33;
-inline void CardInfo::clear_silence() { silence_ = false; }
+inline void CardInfo::clear_silence() {
+  silence_ = false;
+}
 inline bool CardInfo::silence() const {
   // @@protoc_insertion_point(field_get:CardInfo.silence)
   return silence_;
 }
 inline void CardInfo::set_silence(bool value) {
+  
   silence_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.silence)
 }
 
 // optional bool windfury = 34;
-inline void CardInfo::clear_windfury() { windfury_ = false; }
+inline void CardInfo::clear_windfury() {
+  windfury_ = false;
+}
 inline bool CardInfo::windfury() const {
   // @@protoc_insertion_point(field_get:CardInfo.windfury)
   return windfury_;
 }
 inline void CardInfo::set_windfury(bool value) {
+  
   windfury_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.windfury)
 }
 
 // optional bool combo = 35;
-inline void CardInfo::clear_combo() { combo_ = false; }
+inline void CardInfo::clear_combo() {
+  combo_ = false;
+}
 inline bool CardInfo::combo() const {
   // @@protoc_insertion_point(field_get:CardInfo.combo)
   return combo_;
 }
 inline void CardInfo::set_combo(bool value) {
+  
   combo_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.combo)
 }
 
 // optional bool secret = 36;
-inline void CardInfo::clear_secret() { secret_ = false; }
+inline void CardInfo::clear_secret() {
+  secret_ = false;
+}
 inline bool CardInfo::secret() const {
   // @@protoc_insertion_point(field_get:CardInfo.secret)
   return secret_;
 }
 inline void CardInfo::set_secret(bool value) {
+  
   secret_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.secret)
 }
 
 // optional bool overload = 37;
-inline void CardInfo::clear_overload() { overload_ = false; }
+inline void CardInfo::clear_overload() {
+  overload_ = false;
+}
 inline bool CardInfo::overload() const {
   // @@protoc_insertion_point(field_get:CardInfo.overload)
   return overload_;
 }
 inline void CardInfo::set_overload(bool value) {
+  
   overload_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.overload)
 }
 
 // optional bool overload_owed = 38;
-inline void CardInfo::clear_overload_owed() { overload_owed_ = false; }
+inline void CardInfo::clear_overload_owed() {
+  overload_owed_ = false;
+}
 inline bool CardInfo::overload_owed() const {
   // @@protoc_insertion_point(field_get:CardInfo.overload_owed)
   return overload_owed_;
 }
 inline void CardInfo::set_overload_owed(bool value) {
+  
   overload_owed_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.overload_owed)
 }
 
 // optional bool immune = 39;
-inline void CardInfo::clear_immune() { immune_ = false; }
+inline void CardInfo::clear_immune() {
+  immune_ = false;
+}
 inline bool CardInfo::immune() const {
   // @@protoc_insertion_point(field_get:CardInfo.immune)
   return immune_;
 }
 inline void CardInfo::set_immune(bool value) {
+  
   immune_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.immune)
 }
 
 // optional bool cant_attack = 40;
-inline void CardInfo::clear_cant_attack() { cant_attack_ = false; }
+inline void CardInfo::clear_cant_attack() {
+  cant_attack_ = false;
+}
 inline bool CardInfo::cant_attack() const {
   // @@protoc_insertion_point(field_get:CardInfo.cant_attack)
   return cant_attack_;
 }
 inline void CardInfo::set_cant_attack(bool value) {
+  
   cant_attack_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.cant_attack)
 }
 
 // optional bool enraged = 41;
-inline void CardInfo::clear_enraged() { enraged_ = false; }
+inline void CardInfo::clear_enraged() {
+  enraged_ = false;
+}
 inline bool CardInfo::enraged() const {
   // @@protoc_insertion_point(field_get:CardInfo.enraged)
   return enraged_;
 }
 inline void CardInfo::set_enraged(bool value) {
+  
   enraged_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.enraged)
 }
 
 // optional bool quest = 42;
-inline void CardInfo::clear_quest() { quest_ = false; }
+inline void CardInfo::clear_quest() {
+  quest_ = false;
+}
 inline bool CardInfo::quest() const {
   // @@protoc_insertion_point(field_get:CardInfo.quest)
   return quest_;
 }
 inline void CardInfo::set_quest(bool value) {
+  
   quest_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.quest)
 }
 
 // optional bool spellpower = 43;
-inline void CardInfo::clear_spellpower() { spellpower_ = false; }
+inline void CardInfo::clear_spellpower() {
+  spellpower_ = false;
+}
 inline bool CardInfo::spellpower() const {
   // @@protoc_insertion_point(field_get:CardInfo.spellpower)
   return spellpower_;
 }
 inline void CardInfo::set_spellpower(bool value) {
+  
   spellpower_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.spellpower)
 }
 
 // optional bool double_spell_dmg = 44;
-inline void CardInfo::clear_double_spell_dmg() { double_spell_dmg_ = false; }
+inline void CardInfo::clear_double_spell_dmg() {
+  double_spell_dmg_ = false;
+}
 inline bool CardInfo::double_spell_dmg() const {
   // @@protoc_insertion_point(field_get:CardInfo.double_spell_dmg)
   return double_spell_dmg_;
 }
 inline void CardInfo::set_double_spell_dmg(bool value) {
+  
   double_spell_dmg_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.double_spell_dmg)
 }
 
 // optional bool armor = 45;
-inline void CardInfo::clear_armor() { armor_ = false; }
+inline void CardInfo::clear_armor() {
+  armor_ = false;
+}
 inline bool CardInfo::armor() const {
   // @@protoc_insertion_point(field_get:CardInfo.armor)
   return armor_;
 }
 inline void CardInfo::set_armor(bool value) {
+  
   armor_ = value;
   // @@protoc_insertion_point(field_set:CardInfo.armor)
 }

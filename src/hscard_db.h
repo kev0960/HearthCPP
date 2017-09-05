@@ -18,15 +18,28 @@ class HSCardDB {
 
   const static map<string, string> tag_name_to_field_name;
 
- public:
+  vector<CardInfo> Search(const map<string, CardInfo>& map,
+                          const SearchHSCard& Criteria) const;
+
   HSCardDB(const string& file_name);
+
+ public:
+  // Returns the HSCardDB Singleton.
+  static HSCardDB& GetHSCardDB();
   CardInfo ParseCardElement(tinyxml2::XMLElement* element);
 
-  vector<CardInfo> Search(const SearchHSCard& criteria);
+  // We can search for the cards that meets the criteria.
+  // E.g "Find the cards with mana cost higher than 4 and
+  // has taunt.
+  // Search (SearchHSCard(SearchHSCard::ALL).Greater("mana",
+  // 4).HasField("taunt");
+  vector<CardInfo> Search(const SearchHSCard& criteria) const;
   vector<CardInfo> Search(const vector<string>& card_id,
-                          const SearchHSCard& criteria);
-  vector<CardInfo> Search(const map<string, CardInfo>& map,
-                          const SearchHSCard& Criteria);
+                          const SearchHSCard& criteria) const;
+  CardInfo Search(const string& card_id) const;
+
+  HSCardDB(const HSCardDB& hs) = delete;
+  void operator=(const HSCardDB& hs) = delete;
 };
 
 class SearchHSCard {
@@ -36,6 +49,7 @@ class SearchHSCard {
   enum Condition { ANY, ALL };
 
   SearchHSCard(Condition cond = ANY) : cond_(cond) {}
+  SearchHSCard& HasField(string field_name);
   SearchHSCard& Exact(string field_name, const set<int>& matches);
   SearchHSCard& Lower(string field_name, int upper_bound);
   SearchHSCard& Greater(string field_name, int lower_bound);
