@@ -2,9 +2,9 @@
 #include <map>
 #include <string>
 #include <vector>
+#include "card.h"
 #include "card_info.pb.h"
 #include "hscard_db.h"
-#include "card.h"
 
 using namespace std;
 
@@ -29,29 +29,16 @@ class Event {
   EventType type_;
 };
 
-class Field {
-  vector<Card*> cards;
-};
-
 class Action {
   // ID (unique) of the card that created this action.
   string owner_id_;
 
-  public:
+ public:
   Action(const string& owner_id) : owner_id_(owner_id) {}
 
   virtual void operator()() = 0;
 };
 
-class Game {
-  map<Event::EventType, vector<Action>> listeners_;
-
- public:
-  bool AddEventListener(Event::EventType event_type, const Action& action) {
-    listeners_[event_type].push_back(action);
-    return true;
-  }
-};
 int main() {
   const HSCardDB& db = HSCardDB::GetHSCardDB();
   db.Search(SearchHSCard(SearchHSCard::ANY)
