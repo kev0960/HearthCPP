@@ -21,12 +21,35 @@ class UniqueId {
   void operator=(const UniqueId& u) = delete;
 };
 
+class Event {
+ public:
+  enum EventType {
+    DRAW_CARD,  // From the Deck
+    PLAY_CARD,  // From the Hand
+    DESTROY,
+    AFTER_PLAY,
+    SUMMON,
+    // Minions
+    PROPOSE_ATTACK,
+    ATTACK,
+    AFTER_ATTACK,
+    HERO_ATTACK
+  };
+
+  Event(EventType type) : type_(type) {}
+
+ private:
+  EventType type_;
+};
+
 // The instantiated card which exists in Game.
 class Card {
   // Unique ID of the card which is assigned every time the card
   // is generated.
-  string uid;
-  CardInfo card_info;
+  string uid_;
+  CardInfo card_info_;
+  string owner_id_;
+
   enum Zone {
     PLAY, // Game field
     DECK,
@@ -37,25 +60,43 @@ class Card {
     SET_ASIDE
   };
 
-  Zone zone;
+  Zone zone_;
 
  public:
   // Builds a Card from the card ID.
-  Card(const string& card_id) {
+  Card(const string& card_id, const string& owner_id) : owner_id_(owner_id) {
     UniqueId& unique_gen = UniqueId::GetUniqueIdGen();
-    uid = unique_gen.GetUniqueId();
+    uid_ = unique_gen.GetUniqueId();
 
     HSCardDB& card_db = HSCardDB::GetHSCardDB();
-    card_info = card_db.Search(card_id);
+    card_info_ = card_db.Search(card_id);
   }
+
+  string GetOwnerId() { return owner_id_; }
+};
+
+class Hero : public Card {
+
 };
 
 class Field {
-  vector<Card*> cards;
+  vector<Card*> cards_;
+
+  public:
+
+  vector<Card*> FindPlayerCard (const string& owner_id) {
+    vector<Card*> my_cards;
+    for (auto itr = cards_.begin(); itr != cards_.end(); itr ++) {
+      if ((*itr)->GetOwnerId() == owner_id) my_cards.push_back(*itr);
+    }
+    return my_cards;
+  }
 };
 
 class Game {
   map<Event::EventType, vector<Action>> listeners_;
+  Field field_;
+
 
  public:
   bool AddEventListener(Event::EventType event_type, const Action& action) {
@@ -100,24 +141,29 @@ class Target {
     CUSTOM
   };
 
-  TargetTypes types_;
   const Game& game_;
+  TargetTypes target_types_;
 
   // User-defined custom function.
   function<bool(const Game&, vector<Card>&)> custom_function_;
 
+  // Found targets.
   vector<Card> targets_;
 
+  // Initialized when this object is actually used.
+  string owner_id_;
+
  public:
-  Target(const Game& game, TargetTypes types) : game_(game),
-    types_(types) {}
+  Target(const Game& game, TargetTypes target_types) : game_(game),
+    target_types_(target_types) {}
 
-  Target(const Game& game, TargetTypes types,
-         const function<vector<Card>(const Game&)>& custom_function) :
-  game_(game), types_(types), custom_function_(custom_function) { }
+  Target(const Game& game, TargetTypes target_types,
+         const function<bool(const Game&, vector<Card>&)>& custom_function) :
+  game_(game), target_types_(target_types), custom_function_(custom_function) { }
 
-  bool FindTargets() {
-    switch (target_types) {
+  bool FindTargets(const string& owner_id) {
+    owner_id_ = owner_id;
+    switch (target_types_) {
       case ALL:
         all_my_minions();
         all_enemy_minions();
@@ -145,7 +191,7 @@ class Target {
         my_hero();
         break;
       case CUSTOM:
-        custom_function(Game_, targets_);
+        custom_function_(game_, targets_);
         break;
       default:
         return false;
@@ -154,7 +200,18 @@ class Target {
   }
 
   void all_my_minions() {
+    if (owner_id_.empty()) {
+      return;
+    }    
+  }
 
+  void all_enemy_minions() {
+  }
+
+  void my_hero() {
+  }
+
+  void enemy_hero() {
   }
 };
 
