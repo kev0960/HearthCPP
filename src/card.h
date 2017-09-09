@@ -8,8 +8,8 @@ class UniqueId {
 
  public:
   static UniqueId& GetUniqueIdGen() {
-    static UniqueId unqiue_id;
-    return unqiue_id;
+    static UniqueId unique_id;
+    return unique_id;
   }
 
   string GetUniqueId() {
@@ -42,14 +42,15 @@ class Event {
   EventType type_;
 };
 
+// Adopted from Hearthstone Wiki.
 enum Zone {
-    PLAY, // Game field
-    DECK,
-    HAND,
-    SECRET,
-    GRAVEYARD,
-    REMOVED_FROM_GAME,
-    SET_ASIDE
+  PLAY,  // Game field
+  DECK,
+  HAND,
+  SECRET,
+  GRAVEYARD,
+  REMOVED_FROM_GAME,
+  SET_ASIDE
 };
 
 // The instantiated card which exists in Game.
@@ -77,29 +78,29 @@ class Card {
   Zone GetZone() { return zone_; }
 };
 
-class Hero : public Card {
-
-};
+class Hero : public Card {};
 
 class Field {
   vector<Card*> cards_;
 
-  public:
+ public:
+  vector<Card*> FindPlayerCard() { return cards_; }
 
-  vector<Card*> FindPlayerCard (const string& owner_id) {
+  vector<Card*> FindPlayerCard(const string& owner_id) {
     return FindPlayerCard(owner_id);
   }
-  vector<Card*> FindPlayerCard (Zone card_location) {
+  vector<Card*> FindPlayerCard(Zone card_location) {
     return FindPlayerCard("ANY", card_location);
   }
-
-  vector<Card*> FindPlayerCard (const string& owner_id,
-                                Zone card_location = -1) {
+  vector<Card*> FindPlayerCard(const string& owner_id,
+                               Zone card_location = -1) {
     vector<Card*> my_cards;
-    for (auto itr = cards_.begin(); itr != cards_.end(); itr ++) {
-      if ((*itr)_>GetOwnerId() == owner_id || owner_id == "ANY") {
-        if (card_location == -1) my_cards.push_back(*itr);
-        else if((*itr)->GetZone() == card_location) my_cards.push_back(*itr);
+    for (auto itr = cards_.begin(); itr != cards_.end(); itr++) {
+      if ((*itr)_ > GetOwnerId() == owner_id || owner_id == "ANY") {
+        if (card_location == -1)
+          my_cards.push_back(*itr);
+        else if ((*itr)->GetZone() == card_location)
+          my_cards.push_back(*itr);
       }
     }
 
@@ -111,12 +112,16 @@ class Game {
   map<Event::EventType, vector<Action>> listeners_;
   Field field_;
 
-
  public:
   bool AddEventListener(Event::EventType event_type, const Action& action) {
     listeners_[event_type].push_back(action);
     return true;
   }
+
+  Field& GetField() { return field_; }
+
+  // (TODO) Implement this function.
+  string GetEnemyId(const string& me) { return ""; }
 };
 
 class CardActionManager {
@@ -141,93 +146,94 @@ class CardActionManager {
   }
 };
 
+/*
+  How Target Works.
 
+  Target class is passed to the any Action object that requires the target. For
+  example, Hit object wants to know what cards it must target. Also when the
+  user plays the card,
+  sometimes it requires the target to do something (like giving buffs or deals
+  damage.)
+
+  In all cases, we need to pass Target object to tell what kind of actions
+  it needs to do.
+
+
+*/
+// Target types
+// SELECT (the card that the user selected)
+//  - User selects one card;
 class Target {
-  enum TargetTypes {
-    ALL,
-    ALL_ENEMY_CHARACTERS, // Including the enemy hero
-    ALL_MY_CHARACTERS, // Including my hero
-    ALL_MINIONS,
-    ALL_ENEMY_MINIONS,
-    ALL_MY_MINIONS,
-    ENEMY_HERO,
-    MY_HERO,
-    CUSTOM
-  };
+  Game* game_;
 
-  const Game& game_;
-  TargetTypes target_types_;
+  // Owner of this Target.
+  Card* card_;
 
-  // User-defined custom function.
-  function<bool(const Game&, vector<Card>&)> custom_function_;
-
-  // Found targets.
-  vector<Card> targets_;
-
-  // Initialized when this object is actually used.
-  string owner_id_;
+  vector<Card*> targets_;
+  // bool (const Game* game, Card* my_card, Card* card_need_to_be_checked)
+  vector<function<bool(const Game*, Card*, Card*)>> find_targets_;
 
  public:
-  Target(const Game& game, TargetTypes target_types) : game_(game),
-    target_types_(target_types) {}
+  Target(const Game* game) : game_(game), card_(nullptr) {}
+  Target(const function<bool(const Game*, Card*, Card*)> find_target)
+      : game_(nullptr), card_(nullptr) {
+    find_targets_.push_back(find_target);
+  }
+  Target(const Game* game, const Card* card_) : game_(game), card_(card) {}
 
-  Target(const Game& game, TargetTypes target_types,
-         const function<bool(const Game&, vector<Card>&)>& custom_function) :
-  game_(game), target_types_(target_types), custom_function_(custom_function) { }
-
-  bool FindTargets(const string& owner_id) {
-    owner_id_ = owner_id;
-    switch (target_types_) {
-      case ALL:
-        all_my_minions();
-        all_enemy_minions();
-        my_hero();
-        enemy_hero();
-        break;
-      case ALL_ENEMY_CHARACTERS:
-        all_enemy_minions();
-        enemy_hero();
-        break;
-      case ALL_MY_CHARACTERS:
-        all_my_minions();
-        my_hero();
-        break;
-      case ALL_ENEMY_MINIONS:
-        all_enemy_minions();
-        break;
-      case ALL_MY_MINIONS:
-        all_my_minions();
-        break;
-      case ENEMY_HERO:
-        enemy_hero();
-        break;
-      case MY_HERO:
-        my_hero();
-        break;
-      case CUSTOM:
-        custom_function_(game_, targets_);
-        break;
-      default:
-        return false;
+  virtual bool FindTargets(const Card* card) {
+    if (card_ == nullptr) card_ = card;
+    vector<Card*> targets_ = game_.GetField().FindPlayerCard();
+    for (int i = 0; i < find_targets_.size(); i++) {
+      // Removes the card from the list that fails to pass the check.
+      targets_.erase(
+          remove_if(targets_.begin(), targets_.end(), [&](Card* to_be_checked) {
+            return find_targets_[i](game_, card, to_be_checked);
+          }));
     }
-    return true;
   }
 
-  void all_my_minions() {
-    if (owner_id_.empty()) {
-      return;
-    }    
+  Target& operator+(const Target& target) {
+    find_targets_.insert(find_targets_.end(), target.find_targets_.begin(),
+                         target.find_targets_.end());
+    return *this;
   }
 
-  void all_enemy_minions() {
+  Target& operator-(const Target& target) {
+    for (int i = 0; i < target.find_targets.size(); i++) {
+      auto f = target.find_targets_[i];
+      find_targets_.push_back(
+          [f](const Game* g, Card* me, Card* check) -> bool {
+            return !f(g, me, check);
+          });
+    }
   }
 
-  void my_hero() {
+  void SetGame(const Game* game) {
+    game_ = game;
   }
 
-  void enemy_hero() {
+  void SetCard(const Card* card) {
+    card_ = card;
   }
 };
+
+Target ALL_MY_MINIONS([](const Game* game, const Card* owner, const Card* c) {
+  if (c->GetZone() == PLAY && c->GetOwnerId() == owner->GetOwnerId()) return true;
+  return false;
+});
+
+Target ALL_MY_MINIONS([](const Game* game, const Card* owner, const Card* c) {
+  if (c->GetZone() == PLAY && c->GetOwnerId() == owner->GetOwnerId()) return true;
+  return false;
+});
+
+
+
+    class Select : Target {
+ public:
+  Select(const Game* game_) : Target(game, CUSTOM) {}
+}
 
 // Examples
 // DESTROY (ALL_MINIONS) & DISCARD (MY_CARDS)  (Deathwing)
@@ -236,46 +242,46 @@ class Action {
   int current_pointer_;
 
   void MakeActionList() {
-    action_list_ = new vector<vector<Action>> (1);
+    action_list_ = new vector<vector<Action>>(1);
     current_pointer = 0;
   }
 
  public:
-  Action() : action_list_ (nullptr), current_pointer_ (0) {}
+  Action() : action_list_(nullptr), current_pointer_(0) {}
 
   // Two actions are done together
-  Action& operator& (const Action& action) {
+  Action& operator&(const Action& action) {
     if (action_list_ == nullptr) MakeActionList();
     action_list_.resize(action_list_.size() + action.action_list_.size() - 1);
-    for (int i = 0; i < action.action_list_.size(); i ++) {
-      action_list_.at(current_pointer_).insert(
-          action_list_.at(current_pointer).end(), // position
-          action.action_list_.at(i).begin(), // start
-          action.action_list_.at(i).end() // end
-          );
-      current_pointer_ ++;
+    for (int i = 0; i < action.action_list_.size(); i++) {
+      action_list_.at(current_pointer_)
+          .insert(action_list_.at(current_pointer).end(),  // position
+                  action.action_list_.at(i).begin(),       // start
+                  action.action_list_.at(i).end()          // end
+                  );
+      current_pointer_++;
     }
     return *this;
   }
 
   // Adds an action that happens next.
-  Action& operator-> (const Action& action) {
+  Action& operator->(const Action& action) {
     if (action_list == nullptr) MakeActionList();
     action_list_.resize(action_list_->size() + action.action_list_->size());
 
-    for (int i = 0; i < action.action_list_.size(); i ++) {
+    for (int i = 0; i < action.action_list_.size(); i++) {
       action_list_.at(current_pointer_) = action.action_list_[i];
-      current_pointer_ ++;
+      current_pointer_++;
     }
 
     return *this;
   }
 
-  Action& Hit(const Target& target) {
-    return action;
-  }
+  Action& Hit(const Target& target) { return action; }
   Action& Summon() { return action; }
 };
+
+class Conditional {};
 
 class CardAction {
   // ID of the card who owns this action.

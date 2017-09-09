@@ -8,7 +8,6 @@
 
 using namespace std;
 
-
 int main() {
   const HSCardDB& db = HSCardDB::GetHSCardDB();
   db.Search(SearchHSCard(SearchHSCard::ANY)
