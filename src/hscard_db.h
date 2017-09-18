@@ -1,3 +1,5 @@
+#ifndef HSCARD_DB_H
+#define HSCARD_DB_H
 #include <google/protobuf/descriptor.h>
 #include <cassert>
 #include <functional>
@@ -62,3 +64,4 @@ class SearchHSCard {
  private:
   Condition cond_;
 };
+#endif
