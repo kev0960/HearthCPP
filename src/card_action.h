@@ -10,7 +10,7 @@
 
 Action := To(target).Do(Action)
   Anything on same "Do" shares the target. If you want to set up the different
-  targets, then separate it from using Then or And.
+  targets, you can either use nested To..Do inside of Do or separate it from using Then or And.
 Action := Action.And(Action)
   Actions that are connected through "And" happens together. That means, the
   event handler will not be called during processing actions.
