@@ -1,0 +1,53 @@
+syntax = "proto3";
+message CardInfo {
+  string card_id = 1;
+  // Mapping between i18n code and the actual text
+  map<string, string> card_name = 2;
+  map<string, string> card_text_inhand = 3;
+  map<string, string> flavor_text = 4;
+  int32 health = 5;
+  int32 attack = 6;
+  int32 cost = 7;
+  int32 card_set = 8;
+  int32 class_name = 9;
+  int32 card_type = 10;
+  int32 rarity = 11;
+  int32 collectible = 12;
+  int32 hero_power_damage = 13;
+  int32 card_race = 14;
+  int32 durability = 26;
+
+  // Card specific
+  bool charge = 15;
+  bool inspire = 16;
+  bool battlecry = 17;
+  bool deathrattle = 18;
+  bool divine_shield = 19;
+  bool stealth = 20;
+  bool choose_one = 21;
+  bool discover = 22;
+  bool aura = 23;
+  bool elite = 24;
+  bool taunt = 25;
+  bool poison = 27;
+  bool adapt = 28;
+  bool cant_targeted_by_spell = 29;
+  bool cant_targeted_by_hero_power = 30;
+  bool affected_by_spell_power = 31;
+  bool freeze = 32;
+  bool silence = 33;
+  bool windfury = 34;
+  bool combo = 35;
+  bool secret = 36;
+  bool overload = 37;
+  bool overload_owed = 38;
+  bool immune = 39;
+  bool cant_attack = 40;
+  bool enraged = 41;
+  bool quest = 42;
+  bool spellpower = 43;
+  bool double_spell_dmg = 44;
+  bool armor = 45;
+
+  // next id : 46
+}
